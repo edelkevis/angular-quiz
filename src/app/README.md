@@ -1,3 +1,12 @@
+# 2. Components
+
+## Exercise 1
+1. Fork the course project.
+2. Create a new component without the angular-cli. name it with your name eg: CristianNewComponent.
+3. Create an object with your personal information: name, age, birthday and a social network url.
+4. Use the angular material card to display the information.
+5. Create a pull request and solve the comments.
+
 # 1. Introduction
 
 ## Exercise 3
