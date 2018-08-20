@@ -1,0 +1,29 @@
+<h1>{{ myFirstInterpolation }}</h1>
+<img src="{{imgSrc}}" alt="">
+<!-- "The sum of 1 + 1 is 2" -->
+<p>The sum of 1 + 1 is {{1 + 1}}</p>  
+<!-- "The sum of 1 + 1 is not 4" -->
+<p>The sum of 1 + 1 is not {{1 + 1 + getVal()}}</p>
+<!--
+JavaScript expressions that have or promote side effects are prohibited, including:
+  - assignments (=, +=, -=, ...)
+  - new
+  - chaining expressions with ; or ,
+  - increment and decrement operators (++ and --)
+-->
+<!-- The safe navigation operator: ?.  -->
+<p>The null hero's name is {{nullHero && nullHero.name}}</p>
+<p> The null hero's name is {{nullHero?.name}} </p>
+
+<!-- the pipe operator -->
+<div>Title through uppercase pipe: {{'title' | uppercase}}</div>
+<!-- Pipe chaining: convert title to uppercase, then to lowercase -->
+<div>
+  Title through a pipe chain:
+  {{'title' | uppercase | lowercase}}
+</div>
+<!-- pipe with configuration argument => "February 25, 1970" -->
+<div>Birthdate: {{currentHero?.birthdate | date:'longDate'}}</div>
+<div>{{currentHero | json}}</div>
+
+<h2>My private variable, please don't do it: {{ $any(this).myPrivateVariable }}</h2>

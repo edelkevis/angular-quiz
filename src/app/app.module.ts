@@ -10,6 +10,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { FirstComponent } from './first/first.component';
 import { SecondComponent } from './second/second.component';
 import { DearPuppyComponent } from './dear-puppy/dear-puppy.component';
+import { ComponentInDepthComponent } from './component-in-depth/component-in-depth.component';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstComponent },
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
     MyMaterialNavComponent,
     FirstComponent,
     SecondComponent,
-    DearPuppyComponent
+    DearPuppyComponent,
+    ComponentInDepthComponent
   ],
   imports: [
     BrowserModule,
