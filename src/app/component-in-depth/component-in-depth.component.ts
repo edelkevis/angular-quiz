@@ -17,12 +17,32 @@ export class ComponentInDepthComponent implements OnInit {
     url: 'http://www.imdb.com/title/tt0065832/',
     rate: 325
   };
+  public disable = true;
   private myPrivateVariable = 'my private variable';
+  public twoWays = '';
+  public oneWay = 'one way';
+  public isSpecial = true;
+  public oneWayFlow = 'one flow';
+  public currentClasses =  {
+    'saveable': true,
+    'modified': false,
+    'special':  true
+  };
+  public currentStyles = {
+    'font-style':  true      ? 'italic' : 'normal',
+    'font-weight': false ? 'bold'   : 'normal',
+    'font-size':   true    ? '24px'   : '12px'
+  };
+
   constructor() {}
 
   ngOnInit() {}
 
   public getVal(): number {
     return 4;
+  }
+
+  public buttonClicked(text) {
+    window.alert(text);
   }
 }

@@ -1,4 +1,114 @@
-<h1>{{ myFirstInterpolation }}</h1>
+<h1>Data binding</h1>
+<!-- 
+  Data binding is a mechanism for coordinating what users see, with application data values.
+
+  One-way from data source to view target: Interpolation, Property, Attribute, Class, Style
+    {{expression}}
+    [target]="expression"
+    bind-target="expression"
+
+  One-way from view target to data source: Event
+    (target)="statement"
+    on-target="statement"
+
+  Two-way: Two-way
+    [(target)]="expression"
+    bindon-target="expression"
+ -->
+ <!-- Bind button disabled state to `isUnchanged` property -->
+<button [disabled]="disable">Save</button>
+<!-- 
+  <input id="myInput" type="text" value="Bob">
+  const input = document.getElementById('myInput')
+  // Change the value
+  input.getAttribute('value') // returns Bob
+  * The HTML attribute value specifies the initial value; the DOM value property is the current value.
+  * <button disabled="false">Still Disabled</button> you cannot enable
+  * Template binding works with properties and events, not attributes.
+ -->
+
+ <!-- 
+  Binding targets
+    Property
+      Element property, Component property, Directive property
+      <img [src]="heroImageUrl">
+      <div [ngClass]="{'special': isSpecial}"></div>
+  -->
+<img [src]="imgSrc" />
+
+<!-- 
+  Binding targets
+    Event
+      Element event, Component event, Directive event
+    
+    <button (click)="buttonClicked()">Save</button>
+    <div (myClick)="clicked=$event" clickable>click me</div>
+ -->
+<button (click)="buttonClicked('hello from template')">Save</button>
+<!-- 
+  Binding targets
+    Two-way
+      * Event and property
+      * Remember add FormsModule to the module in order to work
+    
+    <input [(ngModel)]="twoWays">
+ -->
+<input [(ngModel)]="twoWays" />
+<p>{{ twoWays }}</p>
+<input [value]="oneWay" />
+<p>{{ oneWay }}</p>
+<button (click)="oneWay = 'other value'">Change one way</button>
+<input [value]="oneWayFlow"
+       (input)="oneWayFlow=$event.target.value" />
+<p>{{ oneWayFlow }}</p>
+<!-- 
+  Binding targets
+    Attribute
+    <button [attr.type]="'button'" [attr.aria-label]="'help'">help</button>
+ -->
+<button [attr.type]="'button'" [attr.aria-label]="'help'">help</button>
+<!-- 
+  Binding targets
+    Class
+    <div [class.special]="true">Special</div>
+ -->
+<div [class.special]="true">Special</div>
+<div [class.special]="false">No Special</div>
+<div [ngClass]="arrayOfClasses"></div>
+<div [ngClass]="['class-one', 'class-two']">array of classes</div>
+<div [ngClass]="{ 'class-one': true, 'class-two': false}">object of classes</div>
+<!-- 
+  Binding targets
+    Style
+    <button [style.color]="isSpecial ? 'red' : 'green'">
+ -->
+<button [style.color]="isSpecial ? 'red' : 'green'">special</button>
+<button [style.color]="!isSpecial ? 'red' : 'green'">no special</button>
+<button [style.color]="isSpecial ? 'red': 'green'">Red</button>
+<button [style.background-color]="!isSpecial ? 'cyan': 'grey'" >Save</button>
+<button [style.font-size.em]="isSpecial ? 3 : 1" >Big</button>
+<button [style.font-size.%]="!isSpecial ? 150 : 50" >Small</button>
+<!-- 
+  Property binding or interpolation?
+ -->
+<p><img src="{{imgSrc}}"> is the <i>interpolated</i> image.</p>
+<p><img [src]="img"> is the <i>property bound</i> image.</p>
+
+<p><span>"{{myFirstInterpolation}}" is the <i>interpolated</i> title.</span></p>
+<p>"<span [innerHTML]="myFirstInterpolation"></span>" is the <i>property bound</i> title.</p>
+
+<!-- 
+  Built-in attribute directives
+    * NgClass - add and remove a set of CSS classes
+    * NgStyle - add and remove a set of HTML styles
+    * NgModel - two-way data binding to an HTML form element
+ -->
+<div [ngClass]="currentClasses">This div is initially saveable, unchanged, and special</div>
+<div [ngStyle]="currentStyles">
+  This div is initially italic, normal weight, and extra large (24px).
+</div>
+
+<h1>**** {{ myFirstInterpolation }} ****</h1>
 <img src="{{imgSrc}}" alt="">
 <!-- "The sum of 1 + 1 is 2" -->
 <p>The sum of 1 + 1 is {{1 + 1}}</p>  
