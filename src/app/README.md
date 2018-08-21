@@ -7,6 +7,24 @@
 4. Use the angular material card to display the information.
 5. Create a pull request and solve the comments.
 
+# Exercise 2.
+1. Create a new component with the angular-cli.
+2. Create the following class in the css:
+```
+.green {
+  background: green;
+}
+.red {
+  background: red;
+}
+.yellow {
+  background: yellow;
+}
+```
+3. Create two inputs.
+4. Using property binding change the class of an element according to the value of an input.
+5. Using property binding change the font-size of an element according to the input value.
+
 # 1. Introduction
 
 ## Exercise 3
