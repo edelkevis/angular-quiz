@@ -1,0 +1,9 @@
+.example-card {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://scontent.fbog3-1.fna.fbcdn.net/v/t1.0-1/p240x240/13731729_1096892080380210_7159289054283823695_n.jpg?_nc_cat=0&oh=e0d5a08da49070926a9c02406d2eba2e&oe=5C08E3B7');
+  background-size: cover;
+}
