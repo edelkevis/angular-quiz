@@ -1,0 +1,12 @@
+<div>
+  <label for="font-size">Font size value: </label>
+  <input id="font-size" type="number" [(ngModel)]="fontSizeValue" />
+  <label for="className"></label>
+  <input id="className" type="text" [(ngModel)]="classNameValue" />
+</div>
+
+<div [ngClass]="classNameValue">
+  {{ classNameValue }}
+</div>
+
+<button [style.font-size.px]="fontSizeValue" >Current font value: {{fontSizeValue}} </button>

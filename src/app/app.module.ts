@@ -13,6 +13,7 @@ import { SecondComponent } from './second/second.component';
 import { DearPuppyComponent } from './dear-puppy/dear-puppy.component';
 import { ComponentInDepthComponent } from './component-in-depth/component-in-depth.component';
 import { CristianNewComponentComponent } from './cristian-new-component/cristian-new-component.component';
+import { ExerciseFourSolutionComponent } from './exercise-four-solution/exercise-four-solution.component';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     SecondComponent,
     DearPuppyComponent,
     ComponentInDepthComponent,
-    CristianNewComponentComponent
+    CristianNewComponentComponent,
+    ExerciseFourSolutionComponent
   ],
   imports: [
     BrowserModule,
