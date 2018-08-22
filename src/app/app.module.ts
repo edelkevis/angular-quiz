@@ -14,6 +14,11 @@ import { DearPuppyComponent } from './dear-puppy/dear-puppy.component';
 import { ComponentInDepthComponent } from './component-in-depth/component-in-depth.component';
 import { CristianNewComponentComponent } from './cristian-new-component/cristian-new-component.component';
 import { ExerciseFourSolutionComponent } from './exercise-four-solution/exercise-four-solution.component';
+import { DirectivesInDepthComponent } from './directives-in-depth/directives-in-depth.component';
+import { HighlightDirective } from './directives/highlight.directive';
+import { HighlightMouseDirective } from './directives/highlight-mouse.directive';
+import { HighlightColorDirective } from './directives/highlight-color.directive';
+import { UnlessDirective } from './directives/unless.directive';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstComponent },
@@ -31,7 +36,12 @@ const appRoutes: Routes = [
     DearPuppyComponent,
     ComponentInDepthComponent,
     CristianNewComponentComponent,
-    ExerciseFourSolutionComponent
+    ExerciseFourSolutionComponent,
+    DirectivesInDepthComponent,
+    HighlightDirective,
+    HighlightMouseDirective,
+    HighlightColorDirective,
+    UnlessDirective
   ],
   imports: [
     BrowserModule,

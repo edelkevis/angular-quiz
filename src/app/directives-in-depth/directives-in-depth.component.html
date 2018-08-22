@@ -1,0 +1,133 @@
+<!-- 
+  Directives: An Attribute directive changes the appearance or behavior of a DOM element.
+
+  Three kinds of directives:
+
+    * Components—directives with a template.
+    * Structural directives—change the DOM layout by adding and removing DOM elements.
+      * Two examples are NgFor and NgIf
+    * Attribute directives—change the appearance or behavior of an element, component, or another directive
+      * The built-in NgStyle
+ -->
+
+ <!-- Attribute directive -->
+ <!-- simple directive -->
+ <p appHighlight>Highlight me!</p>
+
+ <!-- Responde to user events -->
+ <h4>Pick a highlight color</h4>
+ <p appHighlightMouse>Highlight me!</p>
+
+<h4>Pick a highlight color</h4>
+<div>
+  <input type="radio" name="colors" (click)="color='lightgreen'">Green
+  <input type="radio" name="colors" (click)="color='yellow'">Yellow
+  <input type="radio" name="colors" (click)="color='cyan'">Cyan
+</div>
+<p [appHighlightColor]="color">Highlight me!</p>
+<p [appHighlightColor]="color" defaultColor="violet">
+  Highlight me too!
+</p>
+
+<!-- Structural directives -->
+<!-- Three of the common, built-in structural directives—NgIf, NgFor, and NgSwitch -->
+<div *ngIf="hero" class="name">{{hero.name}}</div>
+
+<ul>
+  <li *ngFor="let hero of heroes">{{hero.name}}</li>
+</ul>
+
+<div [ngSwitch]="hero?.emotion">
+  <p *ngSwitchCase="'happy'">happy</p>
+  <p *ngSwitchCase="'sad'">sad</p>
+  <p *ngSwitchCase="'app-confused'">app confused</p>
+  <p *ngSwitchDefault>default</p>
+</div>
+
+<!-- *ngIf -->
+<p *ngIf="true">
+  Expression is true and ngIf is true.
+  This paragraph is in the DOM.
+</p>
+<p *ngIf="false">
+  Expression is false and ngIf is false.
+  This paragraph is not in the DOM.
+</p>
+<!-- remove or hide -->
+<p [style.display]="'block'">
+  Expression sets display to "block".
+  This paragraph is visible.
+</p>
+<p [style.display]="'none'">
+  Expression sets display to "none".
+  This paragraph is hidden but still in the DOM.
+</p>
+
+<!-- What the * means? -->
+<!-- 
+  * The *ngIf directive moved to the <ng-template> element where it became a property binding,[ngIf].
+  * The rest of the <div>, including its class attribute, moved inside the <ng-template> element.
+ -->
+<div *ngIf="hero" class="name">{{hero.name}}</div>
+<ng-template [ngIf]="hero">
+  <div class="name">{{hero.name}}</div>
+</ng-template>
+
+<!-- inside the *ngFor -->
+<!--
+* index: number: The index of the current item in the iterable.
+* first: boolean: True when the item is the first item in the iterable.
+* last: boolean: True when the item is the last item in the iterable.
+* even: boolean: True when the item has an even index in the iterable.
+* odd: boolean: True when the item has an odd index in the iterable.
+-->
+<div *ngFor="let hero of heroes; let i=index; let odd=odd;" [class.odd]="odd">
+  ({{i}}) {{hero.name}}
+</div>
+
+<ng-template ngFor let-hero [ngForOf]="heroes" let-i="index" let-odd="odd">
+  <div [class.odd]="odd">({{i}}) {{hero.name}}</div>
+</ng-template>
+
+<!-- Inside the *ngSwitch -->
+<div [ngSwitch]="hero?.emotion">
+  <p *ngSwitchCase="'happy'">happy</p>
+  <p *ngSwitchCase="'sad'">sad</p>
+  <p *ngSwitchCase="'app-confused'">app confused</p>
+  <p *ngSwitchDefault>default</p>
+</div>
+<!-- Quiz: Write the ngSwitch using ng-template -->
+<div [ngSwitch]="hero?.emotion">
+  <ng-template [ngSwitchCase]="'happy'">
+    <p>happy</p>
+  </ng-template>
+  <ng-template ngSwitchCase="sad">
+    <p>sad</p>
+  </ng-template>
+  <ng-template ngSwitchCase="app-confused">
+    <p>app-confused</p>
+  </ng-template>
+  <ng-template ngSwitchDefault>
+    <p>default</p>
+  </ng-template>
+</div>
+
+<!-- ng-container -->
+<p>
+  I turned the corner
+  <ng-container *ngIf="hero">
+    and saw {{hero.name}}. I waved
+  </ng-container>
+  and continued on my way.
+</p>
+
+<!-- unless -->
+<button (click)="condition = !condition">Condition value: {{condition}}</button>
+<p *appUnless="condition" class="unless a">
+  (A) This paragraph is displayed because the condition is false.
+</p>
+
+<p *appUnless="!condition" class="unless b">
+  (B) Although the condition is true,
+  this paragraph is displayed because appUnless is set to false.
+</p>
