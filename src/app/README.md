@@ -1,3 +1,28 @@
+# 3. Directives
+1. Create a new directive dropdown based on:
+```
+const heroes = [
+  { id: 1, name: 'Mr. Nice',  emotion: 'happy'},
+  { id: 2, name: 'Narco',     emotion: 'sad' },
+  { id: 3, name: 'Windstorm', emotion: 'confused' },
+  { id: 4, name: 'Magneta'}
+];
+```
+2. Each option should display the name and the emotion.
+3. Create a check box to hide/show the hero with 'confudes' emotion,
+4. Verify the behavior.
+
+Tip: The html structure of a select is
+```
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+```
+
+
 # 2. Components
 
 ## Exercise 1
