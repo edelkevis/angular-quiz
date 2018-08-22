@@ -19,6 +19,7 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { HighlightMouseDirective } from './directives/highlight-mouse.directive';
 import { HighlightColorDirective } from './directives/highlight-color.directive';
 import { UnlessDirective } from './directives/unless.directive';
+import { ExerciseFiveSolutionComponent } from './exercise-five-solution/exercise-five-solution.component';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstComponent },
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     HighlightDirective,
     HighlightMouseDirective,
     HighlightColorDirective,
-    UnlessDirective
+    UnlessDirective,
+    ExerciseFiveSolutionComponent
   ],
   imports: [
     BrowserModule,

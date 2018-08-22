@@ -1,0 +1,23 @@
+<div>
+  Pick your favorite hero
+  (<label><input type="checkbox" checked (change)="showConfused = !showConfused">show confused</label>)
+</div>
+<select [(ngModel)]="hero">
+  <span *ngFor="let h of heroes">
+    <span *ngIf="showConfused || h.emotion !== 'confused'">
+      <option [ngValue]="h">{{h.name}} ({{h.emotion}})</option>
+    </span>
+  </span>
+</select>
+
+<div>
+  Pick your favorite hero
+  (<label><input type="checkbox" checked (change)="showConfused = !showConfused">show confused</label>)
+</div>
+<select [(ngModel)]="hero">
+  <ng-container *ngFor="let h of heroes">
+    <ng-container *ngIf="showConfused || h.emotion !== 'confused'">
+      <option [ngValue]="h">{{h.name}} ({{h.emotion}})</option>
+    </ng-container>
+  </ng-container>
+</select>
