@@ -14,6 +14,7 @@ import { DearPuppyComponent } from './dear-puppy/dear-puppy.component';
 import { ComponentInDepthComponent } from './component-in-depth/component-in-depth.component';
 import { CristianNewComponentComponent } from './cristian-new-component/cristian-new-component.component';
 import { ExerciseFourSolutionComponent } from './exercise-four-solution/exercise-four-solution.component';
+import {PizzaMakerModule} from './pizza-maker/pizza-maker.module';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstComponent },
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    PizzaMakerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
