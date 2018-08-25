@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray } from '@angular/forms';
+import { PizzasService } from '../services/pizzas.service';
 
 @Component({
   selector: 'pizza-creator',
@@ -7,16 +8,19 @@ import { FormArray } from '@angular/forms';
   styleUrls: ['./pizza-creator.component.scss']
 })
 export class PizzaCreatorComponent {
-
   private visiblePizza = 0;
 
-  @Input() pizzas: FormArray;
+  @Input()
+  pizzas: FormArray;
 
-  @Output() add = new EventEmitter<any>();
+  @Output()
+  add = new EventEmitter<any>();
 
-  @Output() remove = new EventEmitter<any>();
+  @Output()
+  remove = new EventEmitter<any>();
 
-  @Output() toggle = new EventEmitter<number>();
+  @Output()
+  toggle = new EventEmitter<number>();
 
   get openPizza() {
     return this.visiblePizza;
@@ -27,8 +31,11 @@ export class PizzaCreatorComponent {
 
     if (index !== -1) {
       this.toggle.emit(index);
+      this.pizzasService.setPizzaSelectedIndex(index);
     }
   }
+
+  constructor(private pizzasService: PizzasService) {}
 
   public addPizza() {
     this.add.emit();

@@ -1,3 +1,4 @@
+import { PizzasService } from './services/pizzas.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PizzaAppComponent } from './pizza-app/pizza-app.component';
@@ -20,6 +21,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     PizzaSummaryComponent,
     PizzaViewerComponent
   ],
-  exports: [PizzaAppComponent]
+  exports: [PizzaAppComponent],
+  providers: [PizzasService]
 })
 export class PizzaMakerModule {}
