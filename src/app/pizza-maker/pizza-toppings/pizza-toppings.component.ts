@@ -1,5 +1,5 @@
-import {Component, forwardRef, OnInit} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { Component, forwardRef, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'pizza-toppings',
@@ -11,57 +11,67 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
       useExisting: forwardRef(() => PizzaToppingsComponent),
       multi: true
     }
-  ],
+  ]
 })
-export class PizzaToppingsComponent implements ControlValueAccessor {
-  toppings = [
-    'anchovy',
-    'bacon',
-    'basil',
-    'chili',
-    'mozzarella',
-    'mushroom',
-    'olive',
-    'onion',
-    'pepper',
-    'pepperoni',
-    'sweetcorn',
-    'tomato'
-  ];
-
-  value: string[] = [];
-  focused: string;
-
+export class PizzaToppingsComponent implements ControlValueAccessor, OnInit {
+  public toppings: string[];
+  public value: string[] = [];
+  public focused: string;
   private onTouch: Function;
   private onModelChange: Function;
 
-  registerOnChange(fn) {
+  ngOnInit() {
+    this.toppings = this._getAvailablesToppings();
+  }
+
+  public registerOnChange(fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  public registerOnTouched(fn) {
     this.onTouch = fn;
   }
 
-  writeValue(value) {
+  public writeValue(value) {
     this.value = value;
   }
 
-  updateTopping(topping: string) {
+  public updateTopping(topping: string) {
     if (this.value.includes(topping)) {
-      this.value = this.value.filter((x: string) => topping !== x);
+      this.value = this.value.filter(this._isDifferentOf(topping));
     } else {
-      this.value = this.value.concat([topping]);
+      this.value = [...this.value, ...[topping]];
     }
     this.onModelChange(this.value);
   }
 
-  onBlur(value: string) {
+  private _isDifferentOf = (compareValue: string) => (valueFromFilter) => {
+    return compareValue !== valueFromFilter;
+  }
+
+  public onBlur(value: string) {
     this.focused = '';
   }
 
-  onFocus(value: string) {
+  public onFocus(value: string) {
     this.focused = value;
     this.onTouch();
+  }
+
+  private _getAvailablesToppings(): string[] {
+    return [
+      'anchovy',
+      'bacon',
+      'basil',
+      'chili',
+      'mozzarella',
+      'mushroom',
+      'olive',
+      'onion',
+      'pepper',
+      'pepperoni',
+      'sweetcorn',
+      'tomato'
+    ];
   }
 }

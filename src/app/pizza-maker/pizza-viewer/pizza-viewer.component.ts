@@ -37,9 +37,13 @@ export class PizzaViewerComponent implements OnInit {
   constructor(private pizzasService: PizzasService) {}
 
   ngOnInit() {
-    this.pizzasService.$pizzaSelectedIndex.subscribe(index => {
-      console.log('Pizza selected index: ' + index);
-      this.serviceSelectedIndex = index;
-    });
+    this.pizzasService.$pizzaSelectedIndex.subscribe(
+      this._updateServiceSelectedIndex
+    );
+  }
+
+  private _updateServiceSelectedIndex = index => {
+    console.log('Pizza selected index: ' + index);
+    this.serviceSelectedIndex = index;
   }
 }

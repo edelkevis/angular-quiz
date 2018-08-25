@@ -1,5 +1,6 @@
-import {Component, forwardRef} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { Component, forwardRef, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { SizesModel } from './sizes.model';
 
 @Component({
   selector: 'pizza-size',
@@ -11,40 +12,50 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
       useExisting: forwardRef(() => PizzaSizeComponent),
       multi: true
     }
-  ],
+  ]
 })
-export class PizzaSizeComponent implements ControlValueAccessor {
+export class PizzaSizeComponent implements ControlValueAccessor, OnInit {
   private onModelChange: Function;
   private onTouch: Function;
+  public value: string;
+  public focused: string;
+  public sizes: SizesModel[];
 
-  value: string;
-  focused: string;
+  ngOnInit() {
+    this.sizes = this._getAvailablesPizzaSizes();
+  }
 
-  sizes: any[] = [{ type: 'large', inches: 13 }, { type: 'medium', inches: 11 }, { type: 'small', inches: 9 }];
-
-  registerOnChange(fn: Function) {
+  public registerOnChange(fn: Function) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn: Function) {
+  public registerOnTouched(fn: Function) {
     this.onTouch = fn;
   }
 
-  writeValue(value: string) {
+  public writeValue(value: string) {
     this.value = value;
   }
 
-  onChange(value: string) {
+  public onChange(value: string) {
     this.value = value;
     this.onModelChange(value);
   }
 
-  onBlur(value: string) {
+  public onBlur(value: string) {
     this.focused = '';
   }
 
-  onFocus(value: string) {
+  public onFocus(value: string) {
     this.focused = value;
     this.onTouch();
+  }
+
+  private _getAvailablesPizzaSizes(): SizesModel[] {
+    return [
+      { type: 'large', inches: 13 },
+      { type: 'medium', inches: 11 },
+      { type: 'small', inches: 9 }
+    ];
   }
 }
