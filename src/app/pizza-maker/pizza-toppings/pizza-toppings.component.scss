@@ -17,10 +17,12 @@
   position: relative;
   flex-basis: 24%;
   flex-shrink: 1;
+  flex-grow: 1;
   user-select: none;
+  margin-right: 0;
 
-  &:nth-child(4n) {
-    margin-right: 0;
+  &:nth-child(odd) {
+    margin-right: 20px;
   }
 
   input {

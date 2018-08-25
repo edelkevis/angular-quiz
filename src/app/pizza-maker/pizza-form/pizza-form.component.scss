@@ -1,4 +1,4 @@
-:host {
+.pizza-form {
   background: #fff;
   position: relative;
   z-index: 2;
@@ -6,8 +6,8 @@
   margin-left: 20px;
   box-shadow: 0 1px 54px rgba(0, 0, 0, 0.27);
   padding: 20px 30px;
-  overflow-y: scroll;
   height: 100%;
+  overflow: scroll;
 }
 
 .required,
@@ -17,8 +17,8 @@
 }
 
 .input {
-  margin: 0 30px 20px 0;
-  flex-grow: 1;
+  padding: 0 30px 20px 0;
+  flex: 1;
 
   &:last-child {
     margin-right: 0;

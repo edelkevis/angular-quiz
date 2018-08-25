@@ -1,6 +1,14 @@
-:host,
 .pizza-app {
-  height: 100%;
+  height: 100vh;
   display: flex;
-  width: 100%;
+  width: 100vw;
+
+  pizza-viewer {
+    flex: 1;
+  }
+
+  pizza-form {
+    flex: 1.6;
+    height: 100%;
+  }
 }

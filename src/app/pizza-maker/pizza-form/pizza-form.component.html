@@ -1,85 +1,85 @@
-<form (ngSubmit)="onSubmit($event)"
+<form class="pizza-form"
+      (ngSubmit)="onSubmit($event)"
       [formGroup]="parent">
   <h2>Enter your details</h2>
-  <div class="section"
-       formGroupName="details">
+  <div class="section" formGroupName="details">
     <div class="input">
-      <label>
+      <label for="name">
         Name <span class="required">*</span>
         <span *ngIf="parent.get('details').get('name').hasError('required') && parent.get('details').get('name').touched"
               class="error">
-              Field is required
-            </span>
+          Field is required
+        </span>
       </label>
-      <input formControlName="name" type="text" placeholder="John Smith" />
+      <input id="name" formControlName="name" type="text" placeholder="John Smith" />
     </div>
     <div class="input">
-      <label>
+      <label for="email">
         Email <span class="required">*</span>
         <span *ngIf="parent.get('details').get('email').errors && parent.get('details').get('email').touched"
               class="error">
-              Field is required
-            </span>
+          Field is required
+        </span>
       </label>
-      <input formControlName="email" type="email" placeholder="Enter your email">
+      <input id="email" formControlName="email" type="email" placeholder="Enter your email">
     </div>
     <div class="input">
-      <label>
+      <label for="confirm">
         Confirm <span class="required">*</span>
         <span *ngIf="parent.get('details').get('confirm').errors && parent.get('details').get('confirm').touched"
               class="error">
-              <span *ngIf="parent.get('details').get('confirm').hasError('required')">
-                Field is required
-              </span>
-            </span>
+          <span *ngIf="parent.get('details').get('confirm').hasError('required')">
+            Field is required
+          </span>
+        </span>
         <span class="error"
               *ngIf="!parent.get('details').get('confirm').hasError('required') && parent.get('details').touched && parent.get('details').hasError('nomatch')">
-              Emails must match
-            </span>
+          Emails must match
+        </span>
       </label>
-      <input formControlName="confirm" type="email" placeholder="Confirm your email">
+      <input id="confirm" formControlName="confirm" type="email" placeholder="Confirm your email">
     </div>
   </div>
   <div class="section" formGroupName="details">
     <div class="input">
-      <label>
+      <label for="addres">
         Address <span class="required">*</span>
         <span *ngIf="parent.get('details').get('address').errors && parent.get('details').get('address').touched"
               class="error">
-              <span *ngIf="parent.get('details').get('address').hasError('required')">
-                Field is required
-              </span>
-              <span *ngIf="parent.get('details').get('address').hasError('minlength')">
-                Min of 3 characters
-              </span>
-            </span>
+          <span *ngIf="parent.get('details').get('address').hasError('required')">
+            Field is required
+          </span>
+          <span *ngIf="parent.get('details').get('address').hasError('minlength')">
+            Min of 3 characters
+          </span>
+        </span>
       </label>
-      <input formControlName="address" type="text" placeholder="44 Pizza Street">
+      <input for="address" formControlName="address" type="text" placeholder="44 Pizza Street">
     </div>
     <div class="input">
-      <label>
+      <label for="postcode">
         Postcode <span class="required">*</span>
         <span *ngIf="parent.get('details').get('postcode').errors && parent.get('details').get('postcode').touched"
               class="error">
-              <span *ngIf="parent.get('details').get('postcode').hasError('required')">
-                Field is required
-              </span>
-              <span *ngIf="parent.get('details').get('postcode').hasError('minlength')">
-                Min of 3 characters
-              </span>
-            </span>
+          <span *ngIf="parent.get('details').get('postcode').hasError('required')">
+            Field is required
+          </span>
+          <span *ngIf="parent.get('details').get('postcode').hasError('minlength')">
+            Min of 3 characters
+          </span>
+        </span>
       </label>
-      <input formControlName="postcode" type="text" placeholder="PI3 3AS">
+      <input for="postcode" formControlName="postcode" type="text" placeholder="PI3 3AS">
     </div>
     <div class="input">
-      <label>
+      <label for="phone">
         Contact Number <span class="required">*</span>
         <span *ngIf="parent.get('details').get('phone').errors && parent.get('details').get('phone').touched"
               class="error">
-              Field is required
-            </span>
+          Field is required
+        </span>
       </label>
-      <input formControlName="phone" type="text" placeholder="01234 567 890">
+      <input id="phone" formControlName="phone" type="text" placeholder="01234 567 890">
     </div>
   </div>
   <pizza-creator
