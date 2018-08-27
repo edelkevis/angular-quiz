@@ -27,7 +27,7 @@ export class PizzaAppComponent implements OnInit {
   constructor(private fb: FormBuilder, private pizzasService: PizzasService) {}
 
   ngOnInit() {
-    this.pizzasService.getPizzasPrices().subscribe(this._initalizePizzaAppComponent);
+    this.pizzasService.getPizzasPrices().subscribe(this._initializePizzaAppComponent);
   }
 
   public createPizza(): FormGroup {
@@ -85,8 +85,9 @@ export class PizzaAppComponent implements OnInit {
     });
   }
 
-  private _initalizePizzaAppComponent = (pizzasPricesCollection) => {
-    this.prices = pizzasPricesCollection[0];
+  private _initializePizzaAppComponent = (pizzasPrices) => {
+    const prices = pizzasPrices.reduce(this._collectionToObjectWithoutId, {});
+    this.prices = prices;
     this.pricesAreReady = true;
     this._initializePizzaForm();
   }
@@ -95,5 +96,16 @@ export class PizzaAppComponent implements OnInit {
     this.form = this._createPizzaForm();
     this.calculateTotal(this.form.get('pizzas').value);
     this.form.get('pizzas').valueChanges.subscribe(this.calculateTotal);
+  }
+
+  private _collectionToObjectWithoutId = (acc, current) => {
+    if (acc[current.id] === undefined) {
+      const {id, ...partialObject} = current;
+      acc[current.id] = {
+        ...partialObject
+      };
+    }
+
+    return acc;
   }
 }

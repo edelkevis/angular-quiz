@@ -29,7 +29,7 @@ export class PizzaSizeComponent implements ControlValueAccessor, OnInit {
   }
 
   private _updateAvailableSizes = sizesCollection => {
-    this.sizes = sizesCollection[0].availablesSizes;
+    this.sizes = sizesCollection.availablesSizes;
   }
 
   public registerOnChange(fn: Function) {

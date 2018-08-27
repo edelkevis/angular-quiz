@@ -25,7 +25,7 @@ export class PizzaToppingsComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit() {
     this.pizzasService.getPizzasToppings().subscribe((toppingsCollection: object) => {
-      this.toppings = Object.keys(toppingsCollection[0]).filter(this._propertiesAreTrue(toppingsCollection[0]));
+      this.toppings = Object.keys(toppingsCollection).filter(this._propertiesAreTrue(toppingsCollection));
     });
   }
 
