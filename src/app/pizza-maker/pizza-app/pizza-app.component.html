@@ -1,4 +1,4 @@
-<div class="pizza-app">
+<div class="pizza-app" *ngIf="pricesAreReady">
   <pizza-viewer
     [pizzas]="form.get('pizzas')"
     [activePizza]="activePizza">

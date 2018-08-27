@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
 import { PizzasModel } from './pizzas.model';
-import { PizzaSizesModel, PizzaPricesModel } from './prices.model';
+import { PizzasPricesModel } from './prices.model';
 import { Component, OnInit } from '@angular/core';
 import {
   Form,
@@ -9,6 +10,7 @@ import {
   Validators
 } from '@angular/forms';
 import { PizzaValidators } from '../validators/pizza.validators';
+import { PizzasService } from '../services/pizzas.service';
 
 @Component({
   selector: 'pizza-app',
@@ -18,16 +20,14 @@ import { PizzaValidators } from '../validators/pizza.validators';
 export class PizzaAppComponent implements OnInit {
   public activePizza = 0;
   public total = '0';
-  public prices: PizzaSizesModel;
+  public prices: PizzasPricesModel;
+  public pricesAreReady = false;
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private pizzasService: PizzasService) {}
 
   ngOnInit() {
-    this.prices = this._getPizzaPricesBySizes();
-    this.form = this._createPizzaForm();
-    this.calculateTotal(this.form.get('pizzas').value);
-    this.form.get('pizzas').valueChanges.subscribe(this.calculateTotal);
+    this.pizzasService.getPizzasPrices().subscribe(this._initalizePizzaAppComponent);
   }
 
   public createPizza(): FormGroup {
@@ -85,11 +85,15 @@ export class PizzaAppComponent implements OnInit {
     });
   }
 
-  private _getPizzaPricesBySizes(): PizzaSizesModel {
-    return {
-      small: { base: 9.99, toppings: 0.69 },
-      medium: { base: 12.99, toppings: 0.99 },
-      large: { base: 16.99, toppings: 1.29 }
-    };
+  private _initalizePizzaAppComponent = (pizzasPricesCollection) => {
+    this.prices = pizzasPricesCollection[0];
+    this.pricesAreReady = true;
+    this._initializePizzaForm();
+  }
+
+  private _initializePizzaForm() {
+    this.form = this._createPizzaForm();
+    this.calculateTotal(this.form.get('pizzas').value);
+    this.form.get('pizzas').valueChanges.subscribe(this.calculateTotal);
   }
 }

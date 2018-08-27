@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatCardModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AppComponent } from './app.component';
 import { MyMaterialNavComponent } from './my-material-nav/my-material-nav.component';
@@ -15,6 +17,8 @@ import { ComponentInDepthComponent } from './component-in-depth/component-in-dep
 import { CristianNewComponentComponent } from './cristian-new-component/cristian-new-component.component';
 import { ExerciseFourSolutionComponent } from './exercise-four-solution/exercise-four-solution.component';
 import {PizzaMakerModule} from './pizza-maker/pizza-maker.module';
+import { environment } from '../environments/environment';
+
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstComponent },
@@ -36,6 +40,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase, 'pizza-maker'),
+    AngularFirestoreModule,
     BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),

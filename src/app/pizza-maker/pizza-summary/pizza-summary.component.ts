@@ -1,6 +1,6 @@
 import {Component, Input } from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import { PizzaSizesModel } from '../pizza-app/prices.model';
+import { PizzasPricesModel } from '../pizza-app/prices.model';
 
 @Component({
   selector: 'pizza-summary',
@@ -12,5 +12,5 @@ export class PizzaSummaryComponent {
 
   @Input() total: string;
 
-  @Input() prices: PizzaSizesModel;
+  @Input() prices: PizzasPricesModel;
 }

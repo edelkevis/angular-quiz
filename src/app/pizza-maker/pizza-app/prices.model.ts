@@ -1,11 +1,10 @@
-export interface PizzaSizesModel {
-  small: PizzaPricesModel;
-  medium: PizzaPricesModel;
-  large: PizzaPricesModel;
+export interface PizzasPricesModel {
+  small: PizzaModel;
+  medium: PizzaModel;
+  large: PizzaModel;
 }
 
-
-export interface PizzaPricesModel {
+export interface PizzaModel {
   size?: string;
   base: number;
   toppings: number;

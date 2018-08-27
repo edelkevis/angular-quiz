@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { PizzaSizesModel } from '../pizza-app/prices.model';
+import { PizzasPricesModel } from '../pizza-app/prices.model';
 
 @Component({
   selector: 'pizza-form',
@@ -15,7 +15,7 @@ export class PizzaFormComponent {
   total: string;
 
   @Input()
-  prices: PizzaSizesModel;
+  prices: PizzasPricesModel;
 
   @Output()
   add = new EventEmitter<any>();
