@@ -8,6 +8,8 @@ import {
 import { Observable } from 'rxjs';
 import { PizzasPricesModel } from '../pizza-app/prices.model';
 import { PIZZAS_PRICES } from '../mocks/prices';
+import {PIZZA_SIZES} from '../mocks/sizes';
+import {PIZZA_TOPPINGS} from '../mocks/toppings';
 
 @Injectable({
   providedIn: 'root'
@@ -34,10 +36,18 @@ export class PizzasService {
   }
 
   public getPizzasSizes(): Observable<any[]> {
-    return this.db.collection('sizes').valueChanges();
+    return this._getData('sizes', PIZZA_SIZES);
   }
 
   public getPizzasToppings(): Observable<any[]> {
-    return this.db.collection('toppings').valueChanges();
+    return this._getData('toppings', PIZZA_TOPPINGS);
+  }
+
+  private _getData(pathName: string, mockValue: any): Observable<any[]> {
+    if (environment.enableMockMode) {
+      return of([mockValue]);
+    } else {
+      return this.db.collection(pathName).valueChanges();
+    }
   }
 }

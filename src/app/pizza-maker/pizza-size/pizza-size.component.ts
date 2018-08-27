@@ -1,6 +1,7 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SizesModel } from './sizes.model';
+import { PizzasService } from '../services/pizzas.service';
 
 @Component({
   selector: 'pizza-size',
@@ -21,8 +22,14 @@ export class PizzaSizeComponent implements ControlValueAccessor, OnInit {
   public focused: string;
   public sizes: SizesModel[];
 
+  constructor(private pizzasService: PizzasService) {}
+
   ngOnInit() {
-    this.sizes = this._getAvailablesPizzaSizes();
+    this.pizzasService.getPizzasSizes().subscribe(this._updateAvailableSizes);
+  }
+
+  private _updateAvailableSizes = sizesCollection => {
+    this.sizes = sizesCollection[0].availablesSizes;
   }
 
   public registerOnChange(fn: Function) {
@@ -49,13 +56,5 @@ export class PizzaSizeComponent implements ControlValueAccessor, OnInit {
   public onFocus(value: string) {
     this.focused = value;
     this.onTouch();
-  }
-
-  private _getAvailablesPizzaSizes(): SizesModel[] {
-    return [
-      { type: 'large', inches: 13 },
-      { type: 'medium', inches: 11 },
-      { type: 'small', inches: 9 }
-    ];
   }
 }

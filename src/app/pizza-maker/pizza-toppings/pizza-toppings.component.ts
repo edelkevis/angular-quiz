@@ -1,5 +1,6 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { PizzasService } from '../services/pizzas.service';
 
 @Component({
   selector: 'pizza-toppings',
@@ -20,8 +21,12 @@ export class PizzaToppingsComponent implements ControlValueAccessor, OnInit {
   private onTouch: Function;
   private onModelChange: Function;
 
+  constructor(private pizzasService: PizzasService) {}
+
   ngOnInit() {
-    this.toppings = this._getAvailablesToppings();
+    this.pizzasService.getPizzasToppings().subscribe((toppingsCollection: object) => {
+      this.toppings = Object.keys(toppingsCollection[0]).filter(this._propertiesAreTrue(toppingsCollection[0]));
+    });
   }
 
   public registerOnChange(fn) {
@@ -45,10 +50,6 @@ export class PizzaToppingsComponent implements ControlValueAccessor, OnInit {
     this.onModelChange(this.value);
   }
 
-  private _isDifferentOf = (compareValue: string) => (valueFromFilter) => {
-    return compareValue !== valueFromFilter;
-  }
-
   public onBlur(value: string) {
     this.focused = '';
   }
@@ -58,20 +59,11 @@ export class PizzaToppingsComponent implements ControlValueAccessor, OnInit {
     this.onTouch();
   }
 
-  private _getAvailablesToppings(): string[] {
-    return [
-      'anchovy',
-      'bacon',
-      'basil',
-      'chili',
-      'mozzarella',
-      'mushroom',
-      'olive',
-      'onion',
-      'pepper',
-      'pepperoni',
-      'sweetcorn',
-      'tomato'
-    ];
-  }
+  private _propertiesAreTrue = object => key => {
+    return object[key];
+  };
+
+  private _isDifferentOf = (compareValue: string) => valueFromFilter => {
+    return compareValue !== valueFromFilter;
+  };
 }

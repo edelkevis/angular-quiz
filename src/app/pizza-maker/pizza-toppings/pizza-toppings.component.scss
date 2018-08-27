@@ -6,7 +6,7 @@
 }
 
 .pizza-topping {
-  margin: 20px 0 0;
+  margin: 20px 20px 0 0;
   background: rgba(0, 0, 0, 0.05);
   border-radius: 3px;
   font-size: 16px;
@@ -15,14 +15,13 @@
   cursor: pointer;
   overflow: hidden;
   position: relative;
-  flex-basis: 24%;
+  flex-basis: 25%;
   flex-shrink: 1;
   flex-grow: 1;
   user-select: none;
-  margin-right: 0;
 
-  &:nth-child(odd) {
-    margin-right: 20px;
+  &:nth-child(2n + 2) {
+    margin-right: 0;
   }
 
   input {
